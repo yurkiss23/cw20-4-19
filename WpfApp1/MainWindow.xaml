@@ -12,6 +12,7 @@
             <Button Name="btnChangeUser" Click="btnChangeUser_Click" Margin="0,5">Change user</Button>
             <Button Name="btnDeleteUser" Click="btnDeleteUser_Click">Delete user</Button>
         </StackPanel>
-        <ListBox Name="lbUsers" DisplayMemberPath="Name"></ListBox>
+        <!--<ListBox Name="lbUsers" Height="100" VerticalAlignment="Top" DisplayMemberPath="Name"></ListBox>-->
+        <DataGrid Name="DG" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" DisplayMemberPath="Name"></DataGrid>
     </DockPanel>
 </Window>
