@@ -101,7 +101,10 @@ namespace WpfApp1
         }
         private void btnAddUser_Click(object sender, RoutedEventArgs e)
         {
-            users.Add(new User() { Name = "New user" });
+            //users.Add(new User() { Name = "New user" });
+            _context.Users.Add(new Entities.User() { Name = "new user" });
+            _context.SaveChanges();
+            DG_Load();
         }
 
         private void btnChangeUser_Click(object sender, RoutedEventArgs e)
