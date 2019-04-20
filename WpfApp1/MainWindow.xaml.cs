@@ -111,17 +111,18 @@ namespace WpfApp1
         {
             if (DG.SelectedItem != null)
             {
-                (DG.SelectedItem as User).Name = "Random Name";
-                using (TransactionScope sc =new TransactionScope())
-                {
-                    _connect.Open();
-                    SqlCommand cmd = new SqlCommand($"UPDATE [dbo].[stor_Users]SET[FirstName] = '{DG.SelectedItems[1]}' WHERE [Id] = '{DG.SelectedItems[0]}'", _connect);
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("update user");
 
-                    _connect.Close();
-                    sc.Complete();
-                }
+                (DG.SelectedItem as User).Name = "Random Name";
+                //using (TransactionScope sc =new TransactionScope())
+                //{
+                //    _connect.Open();
+                //    SqlCommand cmd = new SqlCommand($"UPDATE [dbo].[stor_Users]SET[FirstName] = '{DG.SelectedItems[1]}' WHERE [Id] = '{DG.SelectedItems[0]}'", _connect);
+                //    cmd.ExecuteNonQuery();
+                //    MessageBox.Show("update user");
+
+                //    _connect.Close();
+                //    sc.Complete();
+                //}
             }
             DG_Load();
         }
