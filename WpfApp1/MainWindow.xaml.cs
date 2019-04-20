@@ -18,6 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using WpfApp1.Entities;
 
 namespace WpfApp1
 {
@@ -27,12 +28,14 @@ namespace WpfApp1
     public partial class MainWindow : Window
     {
         private SqlConnection _connect;
+        private EFContext _context;
         private ObservableCollection<User> users = new ObservableCollection<User>();
         private string conStr = ConfigurationManager.AppSettings["conStr"];
         public MainWindow()
         {
             InitializeComponent();
             _connect = new SqlConnection(conStr);
+            _context = new EFContext();
             //users.Add(new User() { FName = "qwe", LName = "rty" });
             //users.Add(new User() { FName = "asd", LName = "fgh" });
 
@@ -66,29 +69,35 @@ namespace WpfApp1
         }
         public void DG_Load()
         {
-            DataTable dt = new DataTable();
-            DataColumn id = new DataColumn("id", typeof(int));
-            DataColumn firstname = new DataColumn("firstname", typeof(string));
-            dt.Columns.Add(id);
-            dt.Columns.Add(firstname);
-
-            using (TransactionScope scope = new TransactionScope())
+            users = new ObservableCollection<User>(_context.Users.Select(u => new User
             {
-                _connect.Open();
-                SqlCommand cmd = new SqlCommand("SELECT [Id],[FirstName]FROM[yurkissdb].[dbo].[exam_Students]", _connect);
-                SqlDataReader rdr = cmd.ExecuteReader();
-                while (rdr.Read())
-                {
-                    DataRow row = dt.NewRow();
-                    row[0] = rdr["Id"];
-                    row[1] = rdr["FirstName"].ToString();
-                    dt.Rows.Add(row);
-                }
+                Id = u.Id,
+                Name = u.Name
+            }).ToList());
 
-                _connect.Close();
-                scope.Complete();
-            }
-            DG.ItemsSource = dt.DefaultView;
+            //DataTable dt = new DataTable();
+            //DataColumn id = new DataColumn("id", typeof(int));
+            //DataColumn firstname = new DataColumn("name", typeof(string));
+            //dt.Columns.Add(id);
+            //dt.Columns.Add(firstname);
+
+            //using (TransactionScope scope = new TransactionScope())
+            //{
+            //    _connect.Open();
+            //    SqlCommand cmd = new SqlCommand("SELECT [Id],[Name]FROM[yurkissdb].[dbo].[testUsers]", _connect);
+            //    SqlDataReader rdr = cmd.ExecuteReader();
+            //    while (rdr.Read())
+            //    {
+            //        DataRow row = dt.NewRow();
+            //        row[0] = rdr["Id"];
+            //        row[1] = rdr["Name"].ToString();
+            //        dt.Rows.Add(row);
+            //    }
+
+            //    _connect.Close();
+            //    scope.Complete();
+            //}
+            DG.ItemsSource = users;
         }
         private void btnAddUser_Click(object sender, RoutedEventArgs e)
         {
@@ -103,7 +112,7 @@ namespace WpfApp1
                 using (TransactionScope sc =new TransactionScope())
                 {
                     _connect.Open();
-                    SqlCommand cmd = new SqlCommand($"UPDATE [dbo].[exam_Students]SET[FirstName] = '{DG.SelectedItems[1]}' WHERE [Id] = '{DG.SelectedItems[0]}'", _connect);
+                    SqlCommand cmd = new SqlCommand($"UPDATE [dbo].[stor_Users]SET[FirstName] = '{DG.SelectedItems[1]}' WHERE [Id] = '{DG.SelectedItems[0]}'", _connect);
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("update user");
 
@@ -122,6 +131,7 @@ namespace WpfApp1
     }
     public class User : INotifyPropertyChanged
     {
+        public int Id { get; set; }
         private string name;
         public string Name
         {
