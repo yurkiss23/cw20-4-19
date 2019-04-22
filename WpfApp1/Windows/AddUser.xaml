@@ -12,7 +12,8 @@
         <TextBox x:Name="txtAddName" Height="40" Width="250"
                  BorderThickness="2" HorizontalContentAlignment="Center"
                  FontSize="20"/>
-        <Button x:Name="btnAddName" Content="Додати" Height="30" Width="70"
+        <Button x:Name="btnAddName" Content="Додати&#xa;Змінити" Height="40" Width="70"
+                HorizontalContentAlignment="Center"
                 Margin="0,10,0,0" Click="BtnAddName_Click" />
     </StackPanel>
 </Window>

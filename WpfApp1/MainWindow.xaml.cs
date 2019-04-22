@@ -113,6 +113,12 @@ namespace WpfApp1
         {
             if (DG.SelectedItem != null)
             {
+                MessageBox.Show((DG.SelectedItem as Entities.User).Id.ToString());
+                AddUser cngUser = new AddUser();
+                cngUser.ShowDialog();
+                cngUser.txtAddName.Text = DG.SelectedItem.ToString();
+                //_context.Users.Add(new Entities.User() { Name = addUser.AddName });
+                //_context.SaveChanges();
 
                 (DG.SelectedItem as User).Name = "Random Name";
                 //using (TransactionScope sc =new TransactionScope())

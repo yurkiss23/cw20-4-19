@@ -23,6 +23,7 @@ namespace WpfApp1.Windows
         public AddUser()
         {
             InitializeComponent();
+            txtAddName.Focusable = true;
         }
 
         private void BtnAddName_Click(object sender, RoutedEventArgs e)
