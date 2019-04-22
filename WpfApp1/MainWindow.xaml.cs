@@ -19,6 +19,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using WpfApp1.Entities;
+using WpfApp1.Windows;
 
 namespace WpfApp1
 {
@@ -101,8 +102,9 @@ namespace WpfApp1
         }
         private void btnAddUser_Click(object sender, RoutedEventArgs e)
         {
-            //users.Add(new User() { Name = "New user" });
-            _context.Users.Add(new Entities.User() { Name = "new user" });
+            AddUser addUser = new AddUser();
+            addUser.ShowDialog();
+            _context.Users.Add(new Entities.User() { Name = addUser.AddName });
             _context.SaveChanges();
             DG_Load();
         }

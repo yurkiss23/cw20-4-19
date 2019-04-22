@@ -1,0 +1,18 @@
+﻿<Window x:Class="WpfApp1.Windows.AddUser"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfApp1.Windows"
+        mc:Ignorable="d"
+        Title="AddUser" Height="250" Width="300">
+    <StackPanel>
+        <Label x:Name="lblAddName" Height="40" Margin="0,40,0,0"
+               HorizontalAlignment="Center" FontSize="14">Введіть ім'я:</Label>
+        <TextBox x:Name="txtAddName" Height="40" Width="250"
+                 BorderThickness="2" HorizontalContentAlignment="Center"
+                 FontSize="20"/>
+        <Button x:Name="btnAddName" Content="Додати" Height="30" Width="70"
+                Margin="0,10,0,0" Click="BtnAddName_Click" />
+    </StackPanel>
+</Window>
