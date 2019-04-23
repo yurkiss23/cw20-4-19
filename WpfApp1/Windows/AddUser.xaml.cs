@@ -24,6 +24,7 @@ namespace WpfApp1.Windows
         {
             InitializeComponent();
             txtAddName.Focusable = true;
+            //txtAddName.Text = AddName;
         }
 
         private void BtnAddName_Click(object sender, RoutedEventArgs e)
