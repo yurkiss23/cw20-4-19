@@ -15,20 +15,21 @@ namespace WpfApp1.Entities
         [Key]
         public int Id { get; set; }
 
-        private string name;
+        //private string name;
         [Required,StringLength(maximumLength: 50)]
-        public string Name
-        {
-            get { return this.name; }
-            set
-            {
-                if (this.name != value)
-                {
-                    this.name = value;
-                    this.NotifyPropertyChanged("Name");
-                }
-            }
-        }
+        public string Name { get; set; }
+        //public string Name
+        //{
+        //    get { return this.name; }
+        //    set
+        //    {
+        //        if (this.name != value)
+        //        {
+        //            this.name = value;
+        //            this.NotifyPropertyChanged("Name");
+        //        }
+        //    }
+        //}
 
         public event PropertyChangedEventHandler PropertyChanged;
 

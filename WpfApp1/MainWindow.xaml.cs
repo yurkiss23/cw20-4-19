@@ -144,7 +144,7 @@ namespace WpfApp1
                 users.Remove(DG.SelectedItem as User);
         }
     }
-    public class User : INotifyPropertyChanged
+    public class Users : INotifyPropertyChanged
     {
         public int Id { get; set; }
         private string name;
